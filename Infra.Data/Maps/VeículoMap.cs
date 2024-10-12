@@ -16,20 +16,8 @@ namespace Infra.Data.Maps
                 .HasColumnName("Id")
                 .UseIdentityColumn();
 
-            builder.Property(c => c.Marca)
-                .HasColumnName("Marca");
-
             builder.Property(c => c.Modelo)
                .HasColumnName("Modelo");
-
-            builder.Property(c => c.Tamanho)
-              .HasColumnName("Tamanho");
-
-            builder.Property(c => c.Finalidade)
-              .HasColumnName("Finalidade");
-
-            builder.Property(c => c.Combustivel)
-             .HasColumnName("Combustivel");
 
             builder.Property(c => c.TipoVeiculo)
              .HasColumnName("TipoVeiculo");

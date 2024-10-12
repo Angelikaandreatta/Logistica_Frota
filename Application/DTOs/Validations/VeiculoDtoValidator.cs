@@ -16,21 +16,6 @@ namespace Application.DTOs.Validations
                .NotNull()
                .WithMessage("Modelo deve ser informado.");
 
-            RuleFor(x => x.Tamanho)
-                .NotEmpty()
-                .NotNull()
-                .WithMessage("Tamanho deve ser informado.");
-
-            RuleFor(x => x.Finalidade)
-                .NotNull()
-                .NotEmpty()
-                .WithMessage("Finalidade deve ser informada.");
-
-            RuleFor(x => x.Combustivel)
-                .NotEmpty()
-                .NotNull()
-                .WithMessage("Combustivel deve ser informado.");
-
             RuleFor(x => x.TipoVeiculo)
                 .NotEmpty()
                 .NotNull()
