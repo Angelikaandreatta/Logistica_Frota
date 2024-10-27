@@ -2,6 +2,7 @@
 using Application.Services;
 using Application.Services.Interfaces;
 using Domain.Interfaces;
+using Domain.Repositories;
 using Infra.Data.Context;
 using Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ namespace Infra.Ioc
         {
             services.AddDbContextFactory<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IVeiculoRepository, VeiculoRepository>();
             return services;
         }
 
@@ -24,6 +26,7 @@ namespace Infra.Ioc
             services.AddAutoMapper(typeof(DomainToDtoMapping));
             services.AddAutoMapper(typeof(DtoToDomainMapping));
             services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IVeiculoService, VeiculoService>();
             return services;
         }
     }

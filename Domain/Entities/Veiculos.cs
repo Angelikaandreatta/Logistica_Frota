@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities
 {
-    public class Veiculo
+    public class Veiculos
     {
         public Guid Id { get; set; }
         public string Placa { get; set; }

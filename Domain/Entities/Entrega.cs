@@ -16,7 +16,7 @@ namespace Domain.Entities
         public Usuarios Usuario { get; set; }
 
         [ForeignKey("Veiculo_Id")]
-        public Veiculo Veiculo { get; set; }
+        public Veiculos Veiculo { get; set; }
 
         [ForeignKey("Endereco_Id")]
         public Endereco_Entrega Endereco_Entrega { get; set; }

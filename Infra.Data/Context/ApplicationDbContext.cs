@@ -9,7 +9,7 @@ namespace Infra.Data.Context
         { }
 
         public DbSet<Usuarios> Usuarios { get; set; }
-        public DbSet<Veiculo> Veiculos { get; set; }
+        public DbSet<Veiculos> Veiculos { get; set; }
         public DbSet<Endereco_Entrega> Enderecos_Entregas { get; set; }
         public DbSet<Entrega> Entregas { get; set; }
 

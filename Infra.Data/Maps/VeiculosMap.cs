@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infra.Data.Maps
 {
-    public class VeiculoMap : IEntityTypeConfiguration<Veiculo>
+    public class VeiculoMap : IEntityTypeConfiguration<Veiculos>
     {
-        public void Configure(EntityTypeBuilder<Veiculo> builder)
+        public void Configure(EntityTypeBuilder<Veiculos> builder)
         {
             builder.ToTable("Veiculos");
 
