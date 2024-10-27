@@ -13,12 +13,12 @@ namespace Domain.Entities
         public DateTime? Data_Entrega { get; set; }
 
         [ForeignKey("Usuario_Id")]
-        public Usuarios Usuario { get; set; }
+        public virtual Usuarios Usuario { get; set; }
 
         [ForeignKey("Veiculo_Id")]
-        public Veiculos Veiculo { get; set; }
+        public virtual Veiculos Veiculo { get; set; }
 
         [ForeignKey("Endereco_Id")]
-        public Endereco_Entrega Endereco_Entrega { get; set; }
+        public virtual Endereco_Entrega Endereco_Entrega { get; set; }
     }
 }

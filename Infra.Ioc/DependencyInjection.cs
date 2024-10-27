@@ -19,6 +19,7 @@ namespace Infra.Ioc
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IVeiculoRepository, VeiculoRepository>();
             services.AddScoped<IEnderecoEntregaRepository, EnderecoEntregaRepository>();
+            services.AddScoped<IEntregaRepository, EntregaRepository>();
             return services;
         }
 
@@ -29,6 +30,7 @@ namespace Infra.Ioc
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IVeiculoService, VeiculoService>();
             services.AddScoped<IEnderecoEntregaService, EnderecoEntregaService>();
+            services.AddScoped<IEntregaService, EntregaService>();
             return services;
         }
     }
