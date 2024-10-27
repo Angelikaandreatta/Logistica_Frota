@@ -1,54 +1,24 @@
-﻿using Domain.Validators;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
     public class Entrega
     {
-        public int Id { get; set; }
-        public int VeiculoId { get; set; }
-        public string Endereço { get; set; }
-        public int Numero_Endereco { get; set; }
-        public string Cep { get; set; }
-        public string Cidade { get; set; }
-        public string Estado { get; set; }
-        public int Peso { get; set; }
-        public DateTime Data_Entrega { get; set; }
+        public Guid Id { get; set; }
+        public Guid Usuario_Id { get; set; }
+        public Guid Veiculo_Id { get; set; }
+        public Guid Endereco_Id { get; set; }
+        public string Status { get; set; }
+        public DateTime Estimativa_Entrega { get; set; }
+        public DateTime? Data_Entrega { get; set; }
 
+        [ForeignKey("Usuario_Id")]
+        public Usuario Usuario { get; set; }
 
-        public Entrega()
-        { }
+        [ForeignKey("Veiculo_Id")]
+        public Veiculo Veiculo { get; set; }
 
-        public Entrega(int veiculoId, string endereco, int numero_endereco, string cep, string cidade, string estado, int peso, DateTime dataEntrega)
-        {
-            Validation(veiculoId, endereco, numero_endereco, cep, cidade, estado, peso, dataEntrega);
-        }
-
-        public Entrega(int id, int veiculoId, string endereco, int numero_endereco, string cep, string cidade, string estado, int peso, DateTime dataEntrega)
-        {
-            ValidationException.When(id < 0, "Id deve ser maior que 0.");
-            Id = id;
-            Validation(veiculoId, endereco, numero_endereco, cep, cidade, estado, peso, dataEntrega);
-        }
-
-        private void Validation(int veiculoId, string endereco, int numero_endereco, string cep, string cidade, string estado, int peso, DateTime dataEntrega)
-        {
-            ValidationException.When(veiculoId <= 0, "Id do veículo deve ser informado.");
-            ValidationException.When(string.IsNullOrEmpty(endereco), "Endereço deve ser informado.");
-            ValidationException.When(numero_endereco <= 0, "Número do endereço deve ser informado.");
-            ValidationException.When(string.IsNullOrEmpty(cep), "CEP deve ser informado.");
-            ValidationException.When(string.IsNullOrEmpty(cidade), "Cidade deve ser informada.");
-            ValidationException.When(string.IsNullOrEmpty(estado), "Estado deve ser informado.");
-            ValidationException.When(peso <= 0, "Peso deve ser informado.");
-            ValidationException.When(dataEntrega == DateTime.MinValue, "Data para Entrega deve ser informada.");
-
-            VeiculoId = veiculoId;
-            Endereço = endereco;
-            Numero_Endereco = numero_endereco;
-            Cep = cep;
-            Cidade = cidade;
-            Estado = estado;
-            Peso = peso;
-            Data_Entrega = dataEntrega;
-        }
+        [ForeignKey("Endereco_Id")]
+        public Endereco_Entrega Endereco_Entrega { get; set; }
     }
 }

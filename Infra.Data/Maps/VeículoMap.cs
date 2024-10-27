@@ -4,23 +4,37 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infra.Data.Maps
 {
-    public class VeículoMap : IEntityTypeConfiguration<Veiculo>
+    public class UsuarioMap : IEntityTypeConfiguration<Usuario>
     {
-        public void Configure(EntityTypeBuilder<Veiculo> builder)
+        public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            builder.ToTable("Veiculo");
+            builder.ToTable("Usuarios");
 
-            builder.HasKey(c => c.Id);
+            builder.HasKey(u => u.Id);
 
-            builder.Property(c => c.Id)
+            builder.Property(u => u.Id)
                 .HasColumnName("Id")
-                .UseIdentityColumn();
+                .ValueGeneratedOnAdd();
 
-            builder.Property(c => c.Modelo)
-               .HasColumnName("Modelo");
+            builder.Property(u => u.Nome)
+                .HasColumnName("Nome")
+                .IsRequired()
+                .HasMaxLength(100);
 
-            builder.Property(c => c.TipoVeiculo)
-             .HasColumnName("TipoVeiculo");
+            builder.Property(u => u.Email)
+                .HasColumnName("Email")
+                .IsRequired()
+                .HasMaxLength(100);
+
+            builder.Property(u => u.Senha)
+                .HasColumnName("Senha")
+                .IsRequired()
+                .HasMaxLength(50);
+
+            builder.Property(u => u.Acesso)
+                .HasColumnName("Acesso")
+                .IsRequired()
+                .HasMaxLength(50);
         }
     }
 }
