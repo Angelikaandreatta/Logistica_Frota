@@ -18,6 +18,7 @@ namespace Infra.Ioc
             services.AddDbContextFactory<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IVeiculoRepository, VeiculoRepository>();
+            services.AddScoped<IEnderecoEntregaRepository, EnderecoEntregaRepository>();
             return services;
         }
 
@@ -27,6 +28,7 @@ namespace Infra.Ioc
             services.AddAutoMapper(typeof(DtoToDomainMapping));
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IVeiculoService, VeiculoService>();
+            services.AddScoped<IEnderecoEntregaService, EnderecoEntregaService>();
             return services;
         }
     }
