@@ -13,7 +13,7 @@ namespace Domain.Entities
         public DateTime? Data_Entrega { get; set; }
 
         [ForeignKey("Usuario_Id")]
-        public Usuario Usuario { get; set; }
+        public Usuarios Usuario { get; set; }
 
         [ForeignKey("Veiculo_Id")]
         public Veiculo Veiculo { get; set; }

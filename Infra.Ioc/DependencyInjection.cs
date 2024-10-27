@@ -1,7 +1,7 @@
 ﻿using Application.Mappings;
 using Application.Services;
 using Application.Services.Interfaces;
-using Domain.Repositories;
+using Domain.Interfaces;
 using Infra.Data.Context;
 using Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +15,7 @@ namespace Infra.Ioc
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContextFactory<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<IVeiculoRepository, VeiculoRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             return services;
         }
 
@@ -23,7 +23,7 @@ namespace Infra.Ioc
         {
             services.AddAutoMapper(typeof(DomainToDtoMapping));
             services.AddAutoMapper(typeof(DtoToDomainMapping));
-            services.AddScoped<IVeiculoService, VeiculoService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
             return services;
         }
     }

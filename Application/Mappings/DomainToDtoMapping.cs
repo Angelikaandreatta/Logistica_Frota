@@ -1,6 +1,4 @@
-﻿using Application.DTOs;
-using AutoMapper;
-using Domain.Entities;
+﻿using AutoMapper;
 
 namespace Application.Mappings
 {
@@ -8,7 +6,7 @@ namespace Application.Mappings
     {
         public DomainToDtoMapping()
         {
-            CreateMap<Veiculo, VeiculoDto>();
+            //CreateMap<Veiculo, VeiculoDto>();
         }
     }
 }
