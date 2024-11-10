@@ -14,11 +14,6 @@ namespace Infra.Data.Repositories
             _context = context;
         }
 
-        public async Task<Endereco_Entrega> GetByIdAsync(int id)
-        {
-            return await _context.Enderecos_Entregas.FindAsync(id);
-        }
-
         public async Task<IEnumerable<Endereco_Entrega>> GetAllAsync()
         {
             return await _context.Enderecos_Entregas.ToListAsync();
@@ -32,18 +27,34 @@ namespace Infra.Data.Repositories
 
         public async Task UpdateAsync(Endereco_Entrega enderecoEntrega)
         {
-            _context.Enderecos_Entregas.Update(enderecoEntrega);
+            var enderecoExistente = await _context.Enderecos_Entregas
+                .FirstOrDefaultAsync(v => v.Rua.Contains(enderecoEntrega.Rua));
+
+            if (enderecoExistente == null)
+                throw new KeyNotFoundException("Endereço de entrega não encontrado.");
+
+            enderecoExistente.Bairro = enderecoEntrega.Bairro;
+            enderecoExistente.Cidade = enderecoEntrega.Cidade;
+            enderecoExistente.Estado = enderecoEntrega.Estado;
+            enderecoExistente.Cep = enderecoEntrega.Cep;
+
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+
+        public async Task DeleteAsync(Endereco_Entrega endereco_Entrega)
         {
-            var enderecoEntrega = await GetByIdAsync(id);
-            if (enderecoEntrega != null)
-            {
-                _context.Enderecos_Entregas.Remove(enderecoEntrega);
-                await _context.SaveChangesAsync();
-            }
+            var enderecoEntrega = await _context.Enderecos_Entregas
+                .FirstOrDefaultAsync(e => e.Rua == endereco_Entrega.Rua &&
+                                          e.Bairro == endereco_Entrega.Bairro &&
+                                          e.Cidade == endereco_Entrega.Cidade &&
+                                          e.Estado == endereco_Entrega.Estado &&
+                                          e.Cep == endereco_Entrega.Cep);
+            if (enderecoEntrega == null)
+                throw new KeyNotFoundException("Endereço de entrega não encontrado.");
+
+            _context.Enderecos_Entregas.Remove(enderecoEntrega);
+            await _context.SaveChangesAsync();
         }
     }
 }

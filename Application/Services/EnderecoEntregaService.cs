@@ -13,11 +13,6 @@ namespace Application.Services
             _enderecoEntregaRepository = enderecoEntregaRepository;
         }
 
-        public async Task<Endereco_Entrega> GetByIdAsync(int id)
-        {
-            return await _enderecoEntregaRepository.GetByIdAsync(id);
-        }
-
         public async Task<IEnumerable<Endereco_Entrega>> GetAllAsync()
         {
             return await _enderecoEntregaRepository.GetAllAsync();
@@ -33,9 +28,9 @@ namespace Application.Services
             await _enderecoEntregaRepository.UpdateAsync(enderecoEntrega);
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Endereco_Entrega enderecoEntrega)
         {
-            await _enderecoEntregaRepository.DeleteAsync(id);
+            await _enderecoEntregaRepository.DeleteAsync(enderecoEntrega);
         }
     }
 }
