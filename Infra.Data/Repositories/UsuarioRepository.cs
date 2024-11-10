@@ -14,11 +14,6 @@ namespace Infra.Data.Repositories
             _context = context;
         }
 
-        public async Task<Usuarios> GetByIdAsync(int id)
-        {
-            return await _context.Usuarios.FindAsync(id);
-        }
-
         public async Task<IEnumerable<Usuarios>> GetAllAsync()
         {
             return await _context.Usuarios.ToListAsync();
@@ -32,18 +27,30 @@ namespace Infra.Data.Repositories
 
         public async Task UpdateAsync(Usuarios usuario)
         {
-            _context.Usuarios.Update(usuario);
+            var existingUsuario = await _context.Usuarios
+                .FirstOrDefaultAsync(v => v.Nome.Contains(usuario.Nome));
+
+            if (existingUsuario == null)
+                throw new KeyNotFoundException("Usuário não encontrado.");
+
+            existingUsuario.Email = usuario.Email;
+            existingUsuario.Senha = usuario.Senha;
+            existingUsuario.Acesso = usuario.Acesso;
+
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(string nome)
         {
-            var usuario = await GetByIdAsync(id);
-            if (usuario != null)
-            {
-                _context.Usuarios.Remove(usuario);
-                await _context.SaveChangesAsync();
-            }
+            var usuario = await _context.Usuarios
+                .Where(u => u.Nome.Contains(nome))
+                .FirstOrDefaultAsync();
+
+            if (usuario == null)
+                throw new KeyNotFoundException("Nenhum usuário encontrado.");
+
+            _context.Usuarios.Remove(usuario);
+            await _context.SaveChangesAsync();
         }
     }
 }

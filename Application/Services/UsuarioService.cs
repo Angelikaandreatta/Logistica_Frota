@@ -13,11 +13,6 @@ namespace Application.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<Usuarios> GetByIdAsync(int id)
-        {
-            return await _usuarioRepository.GetByIdAsync(id);
-        }
-
         public async Task<IEnumerable<Usuarios>> GetAllAsync()
         {
             return await _usuarioRepository.GetAllAsync();
@@ -33,9 +28,9 @@ namespace Application.Services
             await _usuarioRepository.UpdateAsync(usuario);
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(string nome)
         {
-            await _usuarioRepository.DeleteAsync(id);
+            await _usuarioRepository.DeleteAsync(nome);
         }
     }
 }
