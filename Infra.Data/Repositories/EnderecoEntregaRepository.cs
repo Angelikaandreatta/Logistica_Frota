@@ -14,7 +14,7 @@ namespace Infra.Data.Repositories
             _context = context;
         }
 
-        public async Task<Endereco_Entrega> GetByIdAsync(Guid id)
+        public async Task<Endereco_Entrega> GetByIdAsync(int id)
         {
             return await _context.Enderecos_Entregas.FindAsync(id);
         }
@@ -36,7 +36,7 @@ namespace Infra.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(int id)
         {
             var enderecoEntrega = await GetByIdAsync(id);
             if (enderecoEntrega != null)

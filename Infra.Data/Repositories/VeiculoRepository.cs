@@ -14,9 +14,11 @@ namespace Infra.Data.Repositories
             _context = context;
         }
 
-        public async Task<Veiculos> GetByIdAsync(Guid id)
+        public async Task<Veiculos> GetAsync(string placa)
         {
-            return await _context.Veiculos.FindAsync(id);
+            return await _context.Veiculos
+                .Where(v => v.Placa.ToLower() == placa.ToLower())
+                .FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<Veiculos>> GetAllAsync()
@@ -36,9 +38,9 @@ namespace Infra.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(string placa)
         {
-            var veiculo = await GetByIdAsync(id);
+            var veiculo = await GetAsync(placa);
             if (veiculo != null)
             {
                 _context.Veiculos.Remove(veiculo);

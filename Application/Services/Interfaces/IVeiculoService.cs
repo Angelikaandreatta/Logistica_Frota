@@ -4,10 +4,10 @@ namespace Application.Services.Interfaces
 {
     public interface IVeiculoService
     {
-        Task<Veiculos> GetByIdAsync(Guid id);
+        Task<Veiculos> GetAsync(string placa);
         Task<IEnumerable<Veiculos>> GetAllAsync();
         Task AddAsync(Veiculos veiculo);
         Task UpdateAsync(Veiculos veiculo);
-        Task DeleteAsync(Guid id);
+        Task DeleteAsync(string placa);
     }
 }

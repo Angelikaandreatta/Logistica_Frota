@@ -13,7 +13,7 @@ namespace Application.Services
             _entregaRepository = entregaRepository;
         }
 
-        public async Task<Entrega> GetByIdAsync(Guid id)
+        public async Task<Entrega> GetByIdAsync(int id)
         {
             return await _entregaRepository.GetByIdAsync(id);
         }
@@ -33,7 +33,7 @@ namespace Application.Services
             await _entregaRepository.UpdateAsync(entrega);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(int id)
         {
             await _entregaRepository.DeleteAsync(id);
         }

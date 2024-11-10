@@ -13,7 +13,7 @@ namespace Application.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<Usuarios> GetByIdAsync(Guid id)
+        public async Task<Usuarios> GetByIdAsync(int id)
         {
             return await _usuarioRepository.GetByIdAsync(id);
         }
@@ -33,7 +33,7 @@ namespace Application.Services
             await _usuarioRepository.UpdateAsync(usuario);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(int id)
         {
             await _usuarioRepository.DeleteAsync(id);
         }

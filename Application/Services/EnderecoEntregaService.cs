@@ -13,7 +13,7 @@ namespace Application.Services
             _enderecoEntregaRepository = enderecoEntregaRepository;
         }
 
-        public async Task<Endereco_Entrega> GetByIdAsync(Guid id)
+        public async Task<Endereco_Entrega> GetByIdAsync(int id)
         {
             return await _enderecoEntregaRepository.GetByIdAsync(id);
         }
@@ -33,7 +33,7 @@ namespace Application.Services
             await _enderecoEntregaRepository.UpdateAsync(enderecoEntrega);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(int id)
         {
             await _enderecoEntregaRepository.DeleteAsync(id);
         }

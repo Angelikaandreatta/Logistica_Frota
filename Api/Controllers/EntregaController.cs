@@ -16,7 +16,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Entrega>> GetEntrega(Guid id)
+        public async Task<ActionResult<Entrega>> GetEntrega(int id)
         {
             var entrega = await _entregaService.GetByIdAsync(id);
             if (entrega == null) return NotFound();
@@ -38,7 +38,7 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateEntrega(Guid id, Entrega entrega)
+        public async Task<IActionResult> UpdateEntrega(int id, Entrega entrega)
         {
             if (id != entrega.Id) return BadRequest();
             await _entregaService.UpdateAsync(entrega);
@@ -46,7 +46,7 @@ namespace Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEntrega(Guid id)
+        public async Task<IActionResult> DeleteEntrega(int id)
         {
             await _entregaService.DeleteAsync(id);
             return NoContent();

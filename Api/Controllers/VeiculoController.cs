@@ -15,10 +15,10 @@ namespace Api.Controllers
             _veiculoService = veiculoService;
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Veiculos>> GetVeiculo(Guid id)
+        [HttpGet("{placa}")]
+        public async Task<ActionResult<Veiculos>> GetVeiculo(string placa)
         {
-            var veiculo = await _veiculoService.GetByIdAsync(id);
+            var veiculo = await _veiculoService.GetAsync(placa);
             if (veiculo == null) return NotFound();
             return Ok(veiculo);
         }
@@ -31,24 +31,24 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Veiculos>> CreateVeiculo(Veiculos veiculo)
+        public async Task<IActionResult> CreateVeiculo(Veiculos veiculo)
         {
             await _veiculoService.AddAsync(veiculo);
-            return CreatedAtAction(nameof(GetVeiculo), new { id = veiculo.Id }, veiculo);
+            return NoContent();
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateVeiculo(Guid id, Veiculos veiculo)
+        public async Task<IActionResult> UpdateVeiculo(int id, Veiculos veiculo)
         {
             if (id != veiculo.Id) return BadRequest();
             await _veiculoService.UpdateAsync(veiculo);
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteVeiculo(Guid id)
+        [HttpDelete("{placa}")]
+        public async Task<IActionResult> DeleteVeiculo(string placa)
         {
-            await _veiculoService.DeleteAsync(id);
+            await _veiculoService.DeleteAsync(placa);
             return NoContent();
         }
     }

@@ -16,7 +16,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Endereco_Entrega>> GetEnderecoEntrega(Guid id)
+        public async Task<ActionResult<Endereco_Entrega>> GetEnderecoEntrega(int id)
         {
             var enderecoEntrega = await _enderecoEntregaService.GetByIdAsync(id);
             if (enderecoEntrega == null) return NotFound();
@@ -38,7 +38,7 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateEnderecoEntrega(Guid id, Endereco_Entrega enderecoEntrega)
+        public async Task<IActionResult> UpdateEnderecoEntrega(int id, Endereco_Entrega enderecoEntrega)
         {
             if (id != enderecoEntrega.Id) return BadRequest();
             await _enderecoEntregaService.UpdateAsync(enderecoEntrega);
@@ -46,7 +46,7 @@ namespace Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEnderecoEntrega(Guid id)
+        public async Task<IActionResult> DeleteEnderecoEntrega(int id)
         {
             await _enderecoEntregaService.DeleteAsync(id);
             return NoContent();

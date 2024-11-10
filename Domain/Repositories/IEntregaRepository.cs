@@ -4,10 +4,10 @@ namespace Domain.Repositories
 {
     public interface IEntregaRepository
     {
-        Task<Entrega> GetByIdAsync(Guid id);
+        Task<Entrega> GetByIdAsync(int id);
         Task<IEnumerable<Entrega>> GetAllAsync();
         Task AddAsync(Entrega entrega);
         Task UpdateAsync(Entrega entrega);
-        Task DeleteAsync(Guid id);
+        Task DeleteAsync(int id);
     }
 }

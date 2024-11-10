@@ -2,7 +2,7 @@
 {
     public class Endereco_Entrega
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Rua { get; set; }
         public string Bairro { get; set; }
         public string Cidade { get; set; }

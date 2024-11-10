@@ -13,8 +13,8 @@ namespace Infra.Data.Repositories
         {
             _context = context;
         }
-                                                         
-        public async Task<Entrega> GetByIdAsync(Guid id)
+
+        public async Task<Entrega> GetByIdAsync(int id)
         {
             return await _context.Entregas
                 .Include(e => e.Usuario)
@@ -44,7 +44,7 @@ namespace Infra.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(int id)
         {
             var entrega = await GetByIdAsync(id);
             if (entrega != null)

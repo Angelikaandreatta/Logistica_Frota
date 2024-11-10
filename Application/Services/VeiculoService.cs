@@ -13,9 +13,9 @@ namespace Application.Services
             _veiculoRepository = veiculoRepository;
         }
 
-        public async Task<Veiculos> GetByIdAsync(Guid id)
+        public async Task<Veiculos> GetAsync(string placa)
         {
-            return await _veiculoRepository.GetByIdAsync(id);
+            return await _veiculoRepository.GetAsync(placa);
         }
 
         public async Task<IEnumerable<Veiculos>> GetAllAsync()
@@ -33,9 +33,9 @@ namespace Application.Services
             await _veiculoRepository.UpdateAsync(veiculo);
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(string placa)
         {
-            await _veiculoRepository.DeleteAsync(id);
+            await _veiculoRepository.DeleteAsync(placa);
         }
     }
 }

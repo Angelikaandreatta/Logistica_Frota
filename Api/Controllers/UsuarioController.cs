@@ -16,7 +16,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Usuarios>> GetUsuario(Guid id)
+        public async Task<ActionResult<Usuarios>> GetUsuario(int id)
         {
             var usuario = await _usuarioService.GetByIdAsync(id);
             if (usuario == null) return NotFound();
@@ -38,7 +38,7 @@ namespace Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUsuario(Guid id, Usuarios usuario)
+        public async Task<IActionResult> UpdateUsuario(int id, Usuarios usuario)
         {
             if (id != usuario.Id) return BadRequest();
             await _usuarioService.UpdateAsync(usuario);
@@ -46,7 +46,7 @@ namespace Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUsuario(Guid id)
+        public async Task<IActionResult> DeleteUsuario(int id)
         {
             await _usuarioService.DeleteAsync(id);
             return NoContent();

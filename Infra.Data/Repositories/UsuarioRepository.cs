@@ -14,7 +14,7 @@ namespace Infra.Data.Repositories
             _context = context;
         }
 
-        public async Task<Usuarios> GetByIdAsync(Guid id)
+        public async Task<Usuarios> GetByIdAsync(int id)
         {
             return await _context.Usuarios.FindAsync(id);
         }
@@ -36,7 +36,7 @@ namespace Infra.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(int id)
         {
             var usuario = await GetByIdAsync(id);
             if (usuario != null)
