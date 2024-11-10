@@ -34,7 +34,16 @@ namespace Infra.Data.Repositories
 
         public async Task UpdateAsync(Veiculos veiculo)
         {
-            _context.Veiculos.Update(veiculo);
+            var existingVeiculo = await _context.Veiculos
+                .FirstOrDefaultAsync(v => v.Placa.ToLower() == veiculo.Placa.ToLower());
+
+            if (existingVeiculo == null)
+                throw new KeyNotFoundException("Veículo não encontrado.");
+
+            existingVeiculo.Modelo = veiculo.Modelo;
+            existingVeiculo.Capacidade = veiculo.Capacidade;
+            existingVeiculo.Status = veiculo.Status;
+
             await _context.SaveChangesAsync();
         }
 

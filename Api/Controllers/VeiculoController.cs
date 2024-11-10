@@ -37,10 +37,9 @@ namespace Api.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateVeiculo(int id, Veiculos veiculo)
+        [HttpPut]
+        public async Task<IActionResult> UpdateVeiculo(Veiculos veiculo)
         {
-            if (id != veiculo.Id) return BadRequest();
             await _veiculoService.UpdateAsync(veiculo);
             return NoContent();
         }
