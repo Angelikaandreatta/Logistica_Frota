@@ -56,6 +56,7 @@ namespace Infra.Data.Repositories
                                                  .FirstOrDefaultAsync(e => e.Usuario.Nome.Contains(entrega.Usuario.Nome));
 
             entregaExistente.Status = entrega.Status;
+            entregaExistente.Estimativa_Entrega = entrega.Estimativa_Entrega;
             entregaExistente.Data_Entrega = entrega.Data_Entrega;
 
             _context.Entregas.Update(entregaExistente);
